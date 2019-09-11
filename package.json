@@ -1,0 +1,29 @@
+{
+  "name": "chain-view",
+  "version": "1.0.0",
+  "description": "A blockchain API client for ethereum network",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FahdAlShalhoub/Chain-View.git"
+  },
+  "author": "Fahd Shalhoub and Mohammad Jasser",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FahdAlShalhoub/Chain-View/issues"
+  },
+  "homepage": "https://github.com/FahdAlShalhoub/Chain-View#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.0",
+    "nodemon": "^1.19.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  }
+}
