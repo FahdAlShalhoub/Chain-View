@@ -1,0 +1,20 @@
+<div class="row justify-content-center">
+        <div class="col-6">
+            <% include ./partials/errorMessages %>
+            <form method="POST" action="/register">
+                <div class="form-group">
+                    <label>First name</label>
+                    <input name="firstName" class="form-control" type="text" value="<%= typeof firstName != 'undefined' ? firstName : '' %>" required>
+                    <label>Last Name</label>
+                    <input name="lastName" class="form-control" type="text" value="<%= typeof lastName != 'undefined' ? lastName : '' %>" required>
+                    <label>Email</label>
+                    <input name="email" class="form-control" type="email" value="<%= typeof email != 'undefined' ? email : '' %>" required>
+                    <label>Password</label>
+                    <input name="password" class="form-control" type="password" required>
+                    <label>Confirm Password</label>
+                    <input name="confirmPassword" class="form-control" type="password" required>
+                </div>
+                <button type="submit" class="btn btn-danger">Submit</button>
+            </form>
+        </div>
+    </div>
