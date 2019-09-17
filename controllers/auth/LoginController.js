@@ -1,14 +1,53 @@
 const bcrypt=require('bcryptjs');
-const user=require('../../models/User');
+const User=require('../../models/User');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
+//Passport configuration
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+        User.findOne({ email: username }, function (err, user) {
+          if (err) { return done(err); }
+          if (!user) {
+            return done(null, false,{flashFailure:'Email is not registered'});
+          }
+          if (!bcrypt.compareSync(password,user.password)) {
+            return done(null, false,{flashFailure:'Passowrd is incorrect'});
+          }
+          return done(null, user);
+        });
+      }    
+));
+
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+  
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
+});
+
+//Login
 function showLoginForm(req,res){
-    res.render('login');
+    res.render('login',{message: req.flash('error')});
 }
 
-function handleLogin(req,res){
-
+function handleLogin(req,res,next){
+    passport.authenticate('local', { 
+        successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash: true 
+    })(req,res,next);
 }
 
+function handleLogout(req,res){
+    req.logout();
+    res.redirect('/');
+}
+
+//Register
 function showRegisterForm(req,res){
     res.render('register');
 }
@@ -39,7 +78,7 @@ function handleRegistration(req,res){
         });
     } else{
 
-        user.exists({email:email})
+        User.exists({email:email})
         .then(exists=>{
             if(exists){
                 errors.push({message:"User already exists"});
@@ -51,7 +90,7 @@ function handleRegistration(req,res){
                     password
                 });
             } else{
-                user.create({firstName:firstName,lastName:lastName,email:email,password: bcrypt.hashSync(password,10) });
+                User.create({firstName:firstName,lastName:lastName,email:email,password: bcrypt.hashSync(password,10) });
                 res.redirect('/login');
             }
         })
@@ -61,8 +100,15 @@ function handleRegistration(req,res){
     
 }
 
+function showDashboard(req,res){
+    res.render('dashboard',{name: req.user.firstName});
+}
+
 module.exports={
     showLoginForm,
     showRegisterForm,
-    handleRegistration
+    handleLogout,
+    handleRegistration,
+    handleLogin,
+    showDashboard
 };
