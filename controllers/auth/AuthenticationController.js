@@ -6,7 +6,7 @@ require('../../config/passport-config').configure(passport,User);
 
 //Login
 function showLoginForm(req,res){
-    res.render('login',{message: req.flash('error')});
+    res.render('login',{user: req.user,message: req.flash('error')});
 }
 
 function handleLogin(req,res,next){
@@ -24,7 +24,7 @@ function handleLogout(req,res){
 
 //Register
 function showRegisterForm(req,res){
-    res.render('register');
+    res.render('register',{user: req.user});
 }
 
 function handleRegistration(req,res){
@@ -49,7 +49,8 @@ function handleRegistration(req,res){
             firstName,
             lastName,
             email,
-            password
+            password,
+            user: req.user
         });
     } else{
 
@@ -62,7 +63,8 @@ function handleRegistration(req,res){
                     firstName,
                     lastName,
                     email,
-                    password
+                    password,
+                    user: req.user
                 });
             } else{
                 User.create({firstName:firstName,lastName:lastName,email:email,password: bcrypt.hashSync(password,10) });
@@ -76,7 +78,7 @@ function handleRegistration(req,res){
 }
 
 function showDashboard(req,res){
-    res.render('dashboard',{name: req.user.firstName});
+    res.render('dashboard',{user:req.user});
 }
 
 module.exports={
