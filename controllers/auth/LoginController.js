@@ -1,33 +1,8 @@
-const bcrypt=require('bcryptjs');
 const User=require('../../models/User');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const passport=require('passport');
 
-//Passport configuration
-passport.use(new LocalStrategy(
-    function(username, password, done) {
-        User.findOne({ email: username }, function (err, user) {
-          if (err) { return done(err); }
-          if (!user) {
-            return done(null, false,{flashFailure:'Email is not registered'});
-          }
-          if (!bcrypt.compareSync(password,user.password)) {
-            return done(null, false,{flashFailure:'Passowrd is incorrect'});
-          }
-          return done(null, user);
-        });
-      }    
-));
-
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
-});
-  
-passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-        done(err, user);
-    });
-});
+//Passport Configuration
+require('../../config/passport-config').configure(passport,User);
 
 //Login
 function showLoginForm(req,res){
@@ -36,7 +11,7 @@ function showLoginForm(req,res){
 
 function handleLogin(req,res,next){
     passport.authenticate('local', { 
-        successRedirect: '/',
+        successRedirect: '/dashboard',
         failureRedirect: '/login',
         failureFlash: true 
     })(req,res,next);
