@@ -13,17 +13,29 @@
         <button class="navbar-toggler" aria-expanded="false" aria-controls="navbarColor01" aria-label="Toggle navigation" type="button" data-target="#navbarColor01" data-toggle="collapse">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Log in</a>
-                </li>
-            </ul>
-        </div>
+        <% if(typeof user == 'undefined' ){ %>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Log in</a>
+                    </li>
+                </ul>
+            </div>
+        <% } else {%>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Log out</a>
+                    </li>
+                </ul>
+            </div>
+        <% } %>
     </nav>
     <div class="container mt-5">
         <%-body%>

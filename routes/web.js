@@ -1,13 +1,13 @@
 const express=require('express');
 const router=express.Router();
-const auth=require('../controllers/auth/LoginController');
+const auth=require('../controllers/auth/AuthenticationController');
 const passport=require('passport');
 
 router.use(passport.initialize());
 router.use(passport.session());
 
 router.get('/',function(req,res){
-    res.render('home');
+    res.render('home',{user:req.user});
 });
 
 //Login
