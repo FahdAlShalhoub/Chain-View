@@ -3,7 +3,6 @@ const app=express();
 const PORT = process.env.port || 5000;
 const mongoose=require('mongoose');
 const expressLayouts=require('express-ejs-layouts');
-// const cookies=require('cookie-parser');
 const session=require('express-session');
 const flash=require('express-flash');
 
