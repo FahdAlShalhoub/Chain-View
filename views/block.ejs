@@ -1,7 +1,7 @@
 <div class="container">
 <h3 class="text-center">Block Data</h3>
 <div class="card center" style="width: 70rem;">
-    <div class="card-header">
+    <div class="card-header text-center">
       Block Number #<%= block.height %>
     </div>
     <% if (block.error) { %>
@@ -12,6 +12,11 @@
       <li class="list-group-item">Block Hash : <%=block.hash %></li>
       <li class="list-group-item">Block height : <%=block.height %></li>
       <li class="list-group-item">Block date : <%=block.time %></li>
+      <li class="list-group-item">Previous hash : <%=block.prev_block %></li>
+      <li class="list-group-item">Block fees : <%=block.fees %></li>
+      <li class="list-group-item">Number of Transactions : <%=block.n_tx %></li>
+      <li class="list-group-item">Merkle root : <%=block.mrkl_root %></li>
+
       <a href="/" class="btn btn-primary">Go back</a>
         
     </ul>
