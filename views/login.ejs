@@ -1,0 +1,14 @@
+<div class="row justify-content-center">
+    <div class="col-6">
+        <% include ./partials/errorMessages %>
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label>E-mail</label>
+                <input class="form-control" type="email" name="email">
+                <label>Password</label>
+                <input class="form-control" type="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-danger">Submit</button>
+        </form>
+    </div>
+</div>

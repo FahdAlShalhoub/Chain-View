@@ -1,0 +1,32 @@
+<div class="container">
+<div class="text-center mt-4">
+<img  src="https://i.imgur.com/od8GlBe.png" width=50% hight=50% alt="blockchain photo">
+</div>
+<form action="/search" method="POST">
+<div class="ui fluid icon input mt-4 ">
+  <input type="text" name="search" placeholder="Search for a Block By Hash Or Number">
+  <i class="search icon"></i>
+</div>
+</form>
+
+<div class="ui horizontal divider">
+    Or
+</div>
+
+<h3 class="text-center">Stats</h3>
+<h3 class="text-center">The last on the Blockchain</h3>
+
+<div class="card " style="width: 70rem;">
+    <div class="card-header">
+      Block Number #<%= block.height %>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Block Hash : <%=block.hash %></li>
+      <li class="list-group-item">Block height : <%=block.height %></li>
+      <li class="list-group-item">Block date : <%=block.time %></li>
+    </ul>
+  </div>
+
+</div>
+
+      

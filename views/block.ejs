@@ -1,0 +1,21 @@
+<div class="container">
+<h3 class="text-center">Block Data</h3>
+<div class="card center" style="width: 70rem;">
+    <div class="card-header">
+      Block Number #<%= block.height %>
+    </div>
+    <% if (block.error) { %>
+        <h3 class="text-center"> <%= block.error %> </h3>
+        <a href="/" class="btn btn-primary">Go back</a>
+        <% }else { %>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Block Hash : <%=block.hash %></li>
+      <li class="list-group-item">Block height : <%=block.height %></li>
+      <li class="list-group-item">Block date : <%=block.time %></li>
+      <a href="/" class="btn btn-primary">Go back</a>
+        
+    </ul>
+  
+<% } %>
+</div>
+</div>
