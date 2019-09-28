@@ -6,7 +6,7 @@
     </div>
     <% if (block.error) { %>
         <h3 class="text-center"> <%= block.error %> </h3>
-        <a href="/" class="btn btn-primary">Go back</a>
+        <a href="/" class="btn btn-primary"style="background: #0984e3">Go back</a>
         <% }else { %>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Block Hash : <%=block.hash %></li>
@@ -17,7 +17,7 @@
       <li class="list-group-item">Number of Transactions : <%=block.n_tx %></li>
       <li class="list-group-item">Merkle root : <%=block.mrkl_root %></li>
 
-      <a href="/" class="btn btn-primary">Go back</a>
+      <a href="/" class="btn btn-primary" style="background: #0984e3">Go back</a>
         
     </ul>
   

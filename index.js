@@ -51,6 +51,14 @@ app.post('/search',async(req,res)=>{
     let resultJson = await result.json();
   return res.render("block",{block:resultJson});
 });
+// end point to generate pair of keys ready to use
+app.get('/address', async (req,res)=>{
+    //fetch the data and getting the info 
+    let result = await fetch('https://api.blockcypher.com/v1/btc/test3/addrs',{ method : 'POST'})
+    let resultJson = await result.json();
+     return res.render('wallet',{address:resultJson});
+
+});
 
 
 
