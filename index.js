@@ -36,11 +36,17 @@ app.use(session({
 app.use('/',require('./routes/web'));
 
 // Sorry fahad i don't know how you organize stuff >.>
+// Search endPoint the main purpose is looking for blocks in the blockchain
 app.post('/search',async(req,res)=>{
     // no need to check if it's a hash or a number they already did it.
+
+    // just checking if he tries to send an empty body
+    // not ideal but i can't think of anything else at this moment
+    if(req.body.search == ""){
+         return res.redirect('/')
+    }
     let Link ="https://api.blockcypher.com/v1/btc/main/blocks/";
     let apiLink = Link + req.body.search;
-    console.log(req.body.search);
     let result = await fetch(apiLink);
     let resultJson = await result.json();
   return res.render("block",{block:resultJson});

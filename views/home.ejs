@@ -4,7 +4,7 @@
 </div>
 <form action="/search" method="POST">
 <div class="ui fluid icon input mt-4 ">
-  <input type="text" name="search" placeholder="Search for a Block By Hash Or Number">
+  <input type="text" name="search" placeholder="Search for a Block By Hash Or Number" onkeypress=CheckSpace(event)>
   <i class="search icon"></i>
 </div>
 </form>
@@ -21,9 +21,9 @@
       Block Number #<%= block.height %>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Block Hash : <%=block.hash %></li>
-      <li class="list-group-item">Block height : <%=block.height %></li>
-      <li class="list-group-item">Block date : <%=block.time %></li>
+      <li class="list-group-item"> Last Block Hash : <%=block.hash %></li>
+      <li class="list-group-item">Blockchain height : <%=block.height %></li>
+      <li class="list-group-item">Last Block date : <%=block.time %></li>
     </ul>
   </div>
 
