@@ -10,7 +10,7 @@ router.use(passport.initialize());
 router.use(passport.session());
 
 router.get('/', async function(req,res){
-    let blockchain = await  fetch('https://api.blockcypher.com/v1/btc/main');
+    let blockchain = await fetch('https://api.blockcypher.com/v1/btc/main');
     let result = await blockchain.json()
     res.render('home',{user:req.user,block:result});
 });
