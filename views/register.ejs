@@ -1,20 +1,28 @@
 <div class="row justify-content-center">
         <div class="col-6">
             <% include ./partials/errorMessages %>
-            <form method="POST" action="/register">
-                <div class="form-group">
+            <form class="ui form" method="POST" action="/register">
+                <div class="field">
                     <label>First name</label>
-                    <input name="firstName" class="form-control" type="text" value="<%= typeof firstName != 'undefined' ? firstName : '' %>" required>
+                    <input name="firstName"  type="text" value="<%= typeof firstName != 'undefined' ? firstName : '' %>" placeholder="First Name" required>
+                </div>  
+                <div class="field">
                     <label>Last Name</label>
-                    <input name="lastName" class="form-control" type="text" value="<%= typeof lastName != 'undefined' ? lastName : '' %>" required>
-                    <label>Email</label>
-                    <input name="email" class="form-control" type="email" value="<%= typeof email != 'undefined' ? email : '' %>" required>
-                    <label>Password</label>
-                    <input name="password" class="form-control" type="password" required>
-                    <label>Confirm Password</label>
-                    <input name="confirmPassword" class="form-control" type="password" required>
+                    <input name="lastName" class="form-control" type="text" value="<%= typeof lastName != 'undefined' ? lastName : '' %>"  placeholder="Last Name"required>
                 </div>
-                <button type="submit" class="btn btn-danger">Submit</button>
+                <div class="field">
+                    <label>Email</label>
+                    <input name="email" class="form-control" type="email" value="<%= typeof email != 'undefined' ? email : '' %>" placeholder="Email" required>
+                </div> 
+                <div class="field">
+                    <label>Password</label>
+                    <input name="password" class="form-control" type="password" placeholder="Password" required>
+                </div>
+                <div class="field">
+                    <label>Confirm Password</label>
+                    <input name="confirmPassword" class="form-control" type="password" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit" class="ui button">Submit</button>
             </form>
         </div>
     </div>
