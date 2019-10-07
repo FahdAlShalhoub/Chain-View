@@ -1,6 +1,6 @@
 const express=require('express');
 const router=express.Router();
-const AuthenticatioController=require('../controllers/AuthenticationController');
+const AuthenticationController=require('../controllers/AuthenticationController');
 const BlockchainController=require('../controllers/BlockchainController');
 const passport=require('passport');
 const fetch = require("node-fetch");
@@ -16,16 +16,16 @@ router.get('/', async function(req,res){
 });
 
 /* Login Routes */
-router.get('/login',guest,(req,res) => AuthenticatioController.showLoginForm(req,res));
-router.post('/login',guest,(req,res,next) => AuthenticatioController.handleLogin(req,res,next));
-router.get('/logout',authed,(req,res) => AuthenticatioController.handleLogout(req,res));
+router.get('/login',guest,(req,res) => AuthenticationController.showLoginForm(req,res));
+router.post('/login',guest,(req,res,next) => AuthenticationController.handleLogin(req,res,next));
+router.get('/logout',authed,(req,res) => AuthenticationController.handleLogout(req,res));
 
 /* Register Routes */
-router.get('/register',guest,(req,res) => AuthenticatioController.showRegisterForm(req,res));
-router.post('/register',guest,(req,res) => AuthenticatioController.handleRegistration(req,res));
+router.get('/register',guest,(req,res) => AuthenticationController.showRegisterForm(req,res));
+router.post('/register',guest,(req,res) => AuthenticationController.handleRegistration(req,res));
 
 //Dashboard Routes
-router.get('/dashboard',authed,(req,res) => AuthenticatioController.showDashboard(req,res));
+router.get('/dashboard',authed,(req,res) => AuthenticationController.showDashboard(req,res));
 
 /*Blockchain Routes*/
 
