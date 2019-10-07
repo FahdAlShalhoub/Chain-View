@@ -1,6 +1,6 @@
 const express=require('express');
 const router=express.Router();
-const auth=require('../controllers/auth/AuthenticationController');
+const auth=require('../controllers/AuthenticationController');
 const passport=require('passport');
 const fetch = require("node-fetch");
 

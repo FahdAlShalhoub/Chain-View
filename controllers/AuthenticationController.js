@@ -1,9 +1,9 @@
-const User=require('../../models/User');
+const User=require('../models/User');
 const passport=require('passport');
 const bcrypt=require('bcryptjs');
 
 //Passport Configuration
-require('../../config/passport-config').configure(passport,User);
+require('../config/passport-config').configure(passport,User);
 
 //Login
 function showLoginForm(req,res){
