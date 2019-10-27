@@ -19,7 +19,19 @@ async function generateAddress(req,res){
     return res.render('wallet',{user:req.user,address:resultJson});
 }
 
+async function showSearchForAddressForm(req,res){
+    return res.render('address',{user:req.user});
+}
+
+async function searchForAddress(req,res){
+    let result = await fetch('https://api.blockcypher.com/v1/btc/main/addrs/'+ req.body.address +'/balance')
+    let resultJson = await result.json();
+    return res.render('address',{user:req.user,info:resultJson});
+}
+
 module.exports={
     searchForBlock,
+    searchForAddress,
+    showSearchForAddressForm,
     generateAddress
 }
