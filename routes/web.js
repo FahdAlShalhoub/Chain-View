@@ -35,6 +35,10 @@ router.post('/search',async(req,res) => BlockchainController.searchForBlock(req,
 // end point to generate pair of keys ready to use
 router.get('/address',async (req,res) => BlockchainController.generateAddress(req,res));
 
+// end point to search for an address's balance
+router.get('/searchForAddress',async (req,res) => BlockchainController.showSearchForAddressForm(req,res));
+router.post('/searchForAddress',async (req,res) => BlockchainController.searchForAddress(req,res));
+
 /* Middleware */
 function authed(req,res,next){
     if(!req.user){
