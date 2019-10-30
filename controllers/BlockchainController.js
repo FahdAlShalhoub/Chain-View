@@ -24,8 +24,13 @@ async function showSearchForAddressForm(req,res){
 }
 
 async function searchForAddress(req,res){
+    //TODO: Prune all spaces within the address before sending it to the api 
     let result = await fetch('https://api.blockcypher.com/v1/btc/main/addrs/'+ req.body.address +'/balance')
     let resultJson = await result.json();
+    resultJson.final_balance*=Math.pow(10,-8);
+    resultJson.total_sent*=Math.pow(10,-8);
+    resultJson.total_received*=Math.pow(10,-8);
+    resultJson.unconfimred_balance*=Math.pow(10,-8);
     return res.render('address',{user:req.user,info:resultJson});
 }
 
