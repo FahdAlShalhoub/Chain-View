@@ -33,7 +33,7 @@ router.get('/dashboard',authed,(req,res) => AuthenticationController.showDashboa
 router.post('/search',async(req,res) => BlockchainController.searchForBlock(req,res));
 
 // end point to generate pair of keys ready to use
-router.get('/address',async (req,res) => BlockchainController.generateAddress(req,res));
+router.get('/address',authed,async (req,res) => BlockchainController.generateAddress(req,res));
 
 // end point to search for an address's balance
 router.get('/searchForAddress',async (req,res) => BlockchainController.showSearchForAddressForm(req,res));
