@@ -1,4 +1,5 @@
 const User=require('../models/User');
+const Address=require('../models/Address');
 const passport=require('passport');
 const bcrypt=require('bcryptjs');
 
@@ -78,7 +79,11 @@ function handleRegistration(req,res){
     
 }
 
-function showDashboard(req,res){
+async function showDashboard(req,res){
+    await Address.find({userEmail:req.user.email})
+    .then((returnedAddresses) =>{
+        req.user.addresses = returnedAddresses;
+    });
     res.render('dashboard',{user:req.user});
 }
 
