@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const address = require("../models/Address");
 
 async function searchForBlock(req,res){
     // Checking if he tries to send an empty body
@@ -16,6 +17,13 @@ async function generateAddress(req,res){
     //fetch the data and getting the info 
     let result = await fetch('https://api.blockcypher.com/v1/btc/test3/addrs',{ method : 'POST'})
     let resultJson = await result.json();
+
+    address.create({
+        userEmail: req.user.email,
+        publicKey: resultJson.public,
+        addressKey: resultJson.address
+    });
+ 
     return res.render('wallet',{user:req.user,address:resultJson});
 }
 
@@ -24,8 +32,8 @@ async function showSearchForAddressForm(req,res){
 }
 
 async function searchForAddress(req,res){
-    //TODO: Prune all spaces within the address before sending it to the api 
-    let result = await fetch('https://api.blockcypher.com/v1/btc/main/addrs/'+ req.body.address +'/balance')
+    searchAddress = req.body.address.replace(/[;/\s]/g,""); 
+    let result = await fetch('https://api.blockcypher.com/v1/btc/main/addrs/'+ searchAddress +'/balance')
     let resultJson = await result.json();
     resultJson.final_balance*=Math.pow(10,-8);
     resultJson.total_sent*=Math.pow(10,-8);
