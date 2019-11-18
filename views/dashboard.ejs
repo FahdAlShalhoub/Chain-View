@@ -1,3 +1,26 @@
-<div class="jumbotron">
-    <h1>Welcome to your dashboard <%= user.firstName %> </h1>
+<div class="row">
+    <div class="col-sm-12 jumbotron">
+        <h1>Welcome to your dashboard <%= user.firstName %> </h1>
+    </div>
+</div>
+<div class="row">
+    <table class="col-sm-12 table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Addresses</th>
+                <th>Public Keys</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% for(var i=0;i<user.addresses.length;i++){ %>
+            <tr>
+                <td><%= i %></td>
+                <td><%= user.addresses[i].addressKey %></td>
+                <td><%= user.addresses[i].publicKey %></td>
+                <td><a class="btn btn-success" href="#">Make Transaction</a></td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
 </div>
