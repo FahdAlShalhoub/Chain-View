@@ -20,6 +20,9 @@
   "homepage": "https://github.com/FahdAlShalhoub/Chain-View#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "bigi": "^1.4.2",
+    "bitcoinjs-lib": "^5.1.6",
+    "buffer": "^5.4.3",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",

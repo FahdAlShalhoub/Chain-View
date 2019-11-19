@@ -7,6 +7,11 @@ const expressLayouts=require('express-ejs-layouts');
 const session=require('express-session');
 const flash=require('express-flash');
 const fetch = require("node-fetch");
+// creating transaction requirements
+var bitcoin = require("bitcoinjs-lib");
+var bigi    = require("bigi");
+var buffer  = require('buffer');
+//var keys    = new bitcoin.ECPair(bigi.fromHex(my_hex_private_key));
 
 
 //Connecting To DB
@@ -59,7 +64,33 @@ app.get('/address', async (req,res)=>{
      return res.render('wallet',{address:resultJson});
 
 });
+app.get('/transactions',(req,res)=>{
+    // this endPoint shows the transaction creation page
+    res.render('transactions');
+});
+app.post('/transactions',async(req,res)=>{
+    //this function takes User's private Key and public key and sends everything to '/txs/new'
+        // let sender = User.publicKey;
+       // let keys    = new bitcoin.ECPair(bigi.fromHex(User.privateKey));
+        let recipient = req.body.address;
+        let value = req.body.value;
+    var newtx = {
+        inputs: [{addresses: ['mqYjFiGBti4R9zQShqThN9qtNc9rBehZkc']}], // User.publicKey
+        outputs: [{addresses: [recipient], value: value}]
+      };
 
+      let data ={method:'POST',body:JSON.stringify(newtx), headers: { 'Content-Type': 'application/json' }};
+      let tempTx = await fetch('https://api.blockcypher.com/v1/bcy/test/txs/new', data);
+        // tempTx.pubkeys=[];
+        // tempTx.signatures = tmptx.tosign.map(function(tosign, n) {
+        //     tmptx.pubkeys.push(keys.getPublicKeyBuffer().toString("hex"));
+        //     return keys.sign(new buffer.Buffer(tosign, "hex")).toDER().toString("hex");
+        //   });
+        //   let readyData ={method:'POST',body:JSON.stringify(tempTx), headers: { 'Content-Type': 'application/json' }};
+        //   let result = await fetch('https://api.blockcypher.com/v1/bcy/test/txs/send', readyData);
+      console.log(tempTx);
+      res.send(tempTx);
+});
 
 
 

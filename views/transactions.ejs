@@ -1,0 +1,15 @@
+<div class="row justify-content-center">
+    <div class="col-6">
+        <% include ./partials/errorMessages %>
+        <form method="POST" action="/transactions">
+            <div class="form-group">
+                <label>recipient's address</label>
+                <input name="address" class="form-control" type="text" placeholder="Address" required>
+                <label>Amount</label>
+                <input name="value" class="form-control" type="text" placeholder="Amount" required>
+                
+            </div>
+            <button type="submit" class="btn btn-danger">Submit</button>
+        </form>
+    </div>
+</div>
