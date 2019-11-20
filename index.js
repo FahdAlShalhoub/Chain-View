@@ -7,7 +7,8 @@ const expressLayouts=require('express-ejs-layouts');
 const session=require('express-session');
 const flash=require('express-flash');
 
-//Connecting To DB
+//Connecting To DB 
+mongoose.set('useUnifiedTopology', true);
 mongoose.connect(database,{useNewUrlParser: true})
 .then(()=>{
     console.log('Connection To Database Successful');
