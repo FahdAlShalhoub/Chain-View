@@ -43,6 +43,9 @@ router.post('/searchForAddress',async (req,res) => BlockchainController.searchFo
 router.get('/transaction/:address',authed,async (req,res) => BlockchainController.showTransactionForm(req,res));
 router.post('/transaction',authed,async (req,res) => BlockchainController.makeTransaction(req,res));
 
+//end point to show pending transactions
+router.get('/transactionStatus',async (req,res) => BlockchainController.showPendingTransactions(req,res));  
+
 /* Middleware */
 function authed(req,res,next){
     if(!req.user){
