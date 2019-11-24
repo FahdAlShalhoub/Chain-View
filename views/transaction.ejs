@@ -1,0 +1,31 @@
+<div class="row justify-content-center">
+    <div class="col-6">
+        <% include ./partials/errorMessages %>
+        <form method="POST" action="/transaction">
+            <div class="form-group">
+                <input name="senderAddress" style="display: none;" value = '<%= sender.address %>'  type="text">
+                <label>Recipient's address</label>
+                <input name="address" class="form-control" type="text" placeholder="Address" required>
+                <label>Amount</label>
+                <input name="value" class="form-control" type="text" placeholder="Amount" required>
+            </div>
+            <button type="submit" class="btn btn-danger">Submit</button>
+        </form>
+    </div>
+</div>
+<div class="row justify-content-center mt-5">
+    <% if(typeof info !== 'undefined' ){ %>
+        <% if(typeof info.error !== 'undefined'){ %>
+        <div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
+            <strong>  <%= info.error %> </strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <% } else { %>
+        <div class="jumbotron" style="width: 70rem;">
+            <h1 class="text-success text-center">Transaction Successful</h1>
+        </div>
+        <% } %>
+    <% } %>    
+</div>
