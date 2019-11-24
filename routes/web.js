@@ -39,6 +39,10 @@ router.get('/address',authed,async (req,res) => BlockchainController.generateAdd
 router.get('/searchForAddress',async (req,res) => BlockchainController.showSearchForAddressForm(req,res));
 router.post('/searchForAddress',async (req,res) => BlockchainController.searchForAddress(req,res));
 
+//endpoint to make transaction
+router.get('/transaction',async (req,res) => BlockchainController.showTransactionForm(req,res));
+router.post('/transaction',async (req,res) => BlockchainController.makeTransaction(req,res));
+
 /* Middleware */
 function authed(req,res,next){
     if(!req.user){

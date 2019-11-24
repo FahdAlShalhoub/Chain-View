@@ -42,9 +42,26 @@ async function searchForAddress(req,res){
     return res.render('address',{user:req.user,info:resultJson});
 }
 
+async function showTransactionForm(req,res){
+    return res.render('transaction');
+}
+
+async function makeTransaction(req,res){
+    const transactionData = {
+        inputs: [{addresses: [req.body.inputAddress]}],
+        outputs: [{addresses: [req.body.outputAddress] , value: req.body.value}],
+    };
+
+    let result = await fetch('https://api.blockcypher.com/v1/bcy/test/txs/new',{method:'POST', body: JSON.stringify(transactionData)});
+    console.log(result);
+    return res.send(await result.json());
+}
+
 module.exports={
     searchForBlock,
     searchForAddress,
     showSearchForAddressForm,
-    generateAddress
+    generateAddress,
+    showTransactionForm,
+    makeTransaction
 }
