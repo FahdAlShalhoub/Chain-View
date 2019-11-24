@@ -57,11 +57,18 @@ async function makeTransaction(req,res){
     return res.render('transaction',{user: req.user,info: resultJson,sender: req.body.senderAddress});
 }
 
+async function showPendingTransactions(req,res){
+    let result =  await fetch('https://api.blockcypher.com/v1/btc/main/txs');
+    let resultJson = await result.json();
+    return res.render('pendingTransactions',{user: req.user,info: resultJson});
+}
+
 module.exports={
     searchForBlock,
     searchForAddress,
     showSearchForAddressForm,
     generateAddress,
     showTransactionForm,
-    makeTransaction
+    makeTransaction,
+    showPendingTransactions
 }
