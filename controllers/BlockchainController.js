@@ -43,18 +43,18 @@ async function searchForAddress(req,res){
 }
 
 async function showTransactionForm(req,res){
-    return res.render('transaction');
+    return res.render('transaction',{user:req.user , sender: req.params});
 }
 
 async function makeTransaction(req,res){
     const transactionData = {
-        inputs: [{addresses: [req.body.inputAddress]}],
-        outputs: [{addresses: [req.body.outputAddress] , value: req.body.value}],
+        inputs:  [{addresses: ['CEztKBAYNoUEEaPYbkyFeXC5v8Jz9RoZH9']}],
+        outputs: [{addresses: ['C1rGdt7QEPGiwPMFhNKNhHmyoWpa5X92pn'] , value: 100}],
     };
 
     let result = await fetch('https://api.blockcypher.com/v1/bcy/test/txs/new',{method:'POST', body: JSON.stringify(transactionData)});
-    console.log(result);
-    return res.send(await result.json());
+    let resultJson = await result.json() 
+    return res.render('transaction',{user: req.user,info: resultJson,sender: req.body.senderAddress});
 }
 
 module.exports={
