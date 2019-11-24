@@ -1,0 +1,15 @@
+<div class="row justify-content">
+    <% for(var i=0; i<info.length;i++) { %>
+     <div class="card mt-5" style="width: 70rem;">
+        <div class="card-header text-center">
+            <span class="text-success">Transaction <%= i+1 %> </span>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"> Hash : <a class="text-primary"><%= info[i].hash %></a></li>
+            <li class="list-group-item"> Total : <a class="text-primary"><%= info[i].total %></a></li>
+            <li class="list-group-item"> Fees : <a class="text-primary"><%= info[i].fees %></a></li>
+            <li class="list-group-item"> Size : <a class="text-primary"><%= info[i].size %></a></li>
+        </ul>
+     </div>
+    <% } %>
+</div>
