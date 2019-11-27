@@ -1,0 +1,31 @@
+<div class="container">
+    <h3 class="text-center">address Data</h3>
+    <div class="card center" style="width: 70rem;">
+        <div class="card-header text-center">
+          address Hash #<%= address.address %>
+        </div>
+        <% if (address.error) { %>
+            <h3 class="text-center"> <%= address.error %> </h3>
+            <a href="/" class="btn btn-primary"style="background: #0984e3">Go back</a>
+            <% }else { %>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">address Number of Transactions : <%=address.address %></li>
+          <li class="list-group-item">address Number of Transactions : <%=address.n_tx %></li>
+          <li class="list-group-item">address' unconfirmed_n_tx : <%=address.unconfirmed_n_tx	 %></li>
+          <li class="list-group-item">address balance in satoshis: <%=address.balance %></li>
+          <li class="list-group-item">Number of Transactions : <%=address.n_tx %></li>
+          <li class="list-group-item">refs:<ul><% address.txrefs.forEach((element)=>{ %>
+              
+                  <li><%=element.tx_hash %></li>  
+               
+              <% })%>
+          
+            </ul>
+         </li>
+          
+          <a href="/" class="btn btn-primary" style="background: #0984e3">Go back</a>
+        </ul>
+      
+    <% } %>
+    </div>
+    </div>

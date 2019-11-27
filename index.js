@@ -91,6 +91,28 @@ app.post('/transactions',async(req,res)=>{
       console.log(tempTx);
       res.send(tempTx);
 });
+app.get('/tx',(req,res)=>{
+
+    return res.render('tx') 
+});
+app.post('/tx',async(req,res)=>{
+
+    
+   let Link ="https://api.blockcypher.com/v1/btc/main/txs/";
+   let apiLink = Link + req.body.tx;
+   let result = await fetch(apiLink);
+   let resultJson = await result.json();
+ return res.render("Txs",{tx:resultJson});
+});
+app.post('/address',async(req,res)=>{
+
+   
+   let Link ="https://api.blockcypher.com/v1/btc/main/addrs/";
+   let apiLink = Link + req.body.address;
+   let result = await fetch(apiLink);
+   let resultJson = await result.json();
+ return res.render("address",{address:resultJson});
+});
 
 
 
