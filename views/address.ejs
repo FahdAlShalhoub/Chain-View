@@ -11,16 +11,14 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item">address Number of Transactions : <%=address.address %></li>
           <li class="list-group-item">address Number of Transactions : <%=address.n_tx %></li>
-          <li class="list-group-item">address' unconfirmed Transactions: <%=address.unconfirmed_n_tx	 %></li>
+          <li class="list-group-item">address' unconfirmed_n_tx : <%=address.unconfirmed_n_tx	 %></li>
           <li class="list-group-item">address balance in satoshis: <%=address.balance %></li>
           <li class="list-group-item">Number of Transactions : <%=address.n_tx %></li>
-          <% if (address.txrefs) { %>
           <li class="list-group-item">refs:<ul><% address.txrefs.forEach((element)=>{ %>
               
                   <li><%=element.tx_hash %></li>  
                
               <% })%>
-              <% } %>
           
             </ul>
          </li>

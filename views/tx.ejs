@@ -1,21 +1,13 @@
 <div class="row justify-content-center">
     <div class="col-6">
         <% include ./partials/errorMessages %>
-        <h3>Transaction lookup</h3>
-        <form method="POST" action="/tx">
-            <div class="form-group">
-            
-                <input name="tx" class="form-control" type="text" placeholder="Transaction hash" required>
-            </div>
-            <button type="submit" class="btn btn-primary"  style="background: #0984e3">Submit</button>
-        </form>
-        <h3>Address lookup</h3>
+        <h3>Type the address that you want the report for</h3>
         <form method="POST" action="/address">
             <div class="form-group">
                 <!-- <label>recipient's address</label> -->
                 <input name="address" class="form-control" type="text" placeholder="Address hash" required>
             </div>
-            <button type="submit" class="btn btn-primary" style="background: #0984e3">Submit</button>
+            <button type="submit" class="btn btn-primary" style="background: #0984e3">Download The Report</button>
         </form>
     </div>
 </div>

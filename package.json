@@ -23,6 +23,7 @@
     "bigi": "^1.4.2",
     "bitcoinjs-lib": "^5.1.6",
     "buffer": "^5.4.3",
+    "chokidar": "^3.3.1",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
@@ -31,7 +32,8 @@
     "mongoose": "^5.7.1",
     "node-fetch": "^2.6.0",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "pdfkit": "^0.11.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.2"
