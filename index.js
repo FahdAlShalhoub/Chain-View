@@ -7,6 +7,9 @@ const expressLayouts=require('express-ejs-layouts');
 const session=require('express-session');
 const flash=require('express-flash');
 const fetch = require("node-fetch");
+const pdf = require("pdfkit");
+const fs = require("fs");
+const choki = require("chokidar");
 // creating transaction requirements
 var bitcoin = require("bitcoinjs-lib");
 var bigi    = require("bigi");
@@ -118,15 +121,65 @@ app.get('/mempool',async(req,res)=>{
   return res.render("mempool",{tx:resultJson});
  });
 
-app.post('/address',async(req,res)=>{
+aapp.post('/address',async(req,res)=>{
 
    
-   let Link ="https://api.blockcypher.com/v1/btc/main/addrs/";
-   let apiLink = Link + req.body.address;
-   let result = await fetch(apiLink);
-   let resultJson = await result.json();
- return res.render("address",{address:resultJson});
-});
+    let Link ="https://api.blockcypher.com/v1/btc/main/addrs/";
+    let apiLink = Link + req.body.address;
+    let result = await fetch(apiLink);
+    let resultJson = await result.json();
+    let file = fs.createWriteStream("addressReports/" + resultJson.address + ".pdf");
+    let watcher = choki.watch("addressReports/" + resultJson.address + ".pdf");
+    await writePDF(resultJson,file);
+ 
+ 
+ setTimeout(()=>{
+     return res.download("addressReports/" + resultJson.address + ".pdf");
+ },3000)
+   
+ });
+ 
+ async function writePDF(resultJson,file){
+     let myDoc =  new pdf;
+     myDoc.pipe(file);
+     myDoc.image("public/img/logo.png",0,0,{fit: [100,100]});
+     myDoc.moveDown();
+     myDoc.font("Times-Bold");
+     myDoc.fontSize(35);
+     myDoc.text("Address",{align:"center"});
+     myDoc.fontSize(20);
+     myDoc.text(resultJson.address,{align:"center"});
+     myDoc.fontSize(30);
+     myDoc.moveDown();
+     myDoc.font("Times-Roman");
+     myDoc.fontSize(15);
+     myDoc.text("Number of Transactions: " + resultJson.n_tx);       
+     myDoc.moveDown();
+     myDoc.text("Number Of Unconfirmed Transactions: " + resultJson.unconfirmed_n_tx);
+     myDoc.moveDown();
+     myDoc.text("Balance: " + resultJson.balance + " satoshis");
+     myDoc.fontSize(20);
+     myDoc.moveDown();
+     myDoc.text("_____________________________________",{align:"center"});
+     myDoc.moveDown();
+     myDoc.font("Times-Bold");
+     myDoc.text("Latest Transactions");
+     myDoc.font("Times-Roman");
+     myDoc.fontSize(12);
+     myDoc.moveDown();
+     for(var i=0; i<5 ; i++){
+      myDoc.text("Transaction Hash: " + resultJson.txrefs[i].tx_hash);
+      myDoc.moveDown(0.1); 
+      myDoc.text("Block Height: " + resultJson.txrefs[i].block_height);
+      myDoc.moveDown(0.1); 
+      myDoc.text("Value: " + resultJson.txrefs[i].value);
+      myDoc.moveDown(0.1); 
+      myDoc.text("Date Of Confirmation: " + resultJson.txrefs[i].confirmed);       
+      myDoc.moveDown(); 
+     }
+     myDoc.end();
+ }
+
 // app.get for the mempool
 app.get('/address/:address',async(req,res)=>{
 
