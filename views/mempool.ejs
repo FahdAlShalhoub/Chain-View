@@ -25,8 +25,8 @@
                     <% if(tx.addresses.length <= 2) { %>
                     <tr>
                     <th scope="row"> <%= tx.total %>  satoshi</th>
-                    <td><a href="/address/<%= tx.addresses[0]%>"><%=tx.addresses[0].substring(0,5)%>... </a></td>
-                    <td><a href="/address/<%= tx.addresses[1]%>"><%=tx.addresses[1].substring(0,5)%>... </a></td>
+                    <td><a href="/address/<%= tx.addresses[0]%>">Sender's address... </a></td>
+                    <td><a href="/address/<%= tx.addresses[1]%>">Receiver's address... </a></td>
                   <td> <%= tx.hash %></td>
                   </tr>
                   <% }%>
