@@ -2,7 +2,7 @@
     
     <div class="card center" style="width: 70rem;">
         <div class="card-header text-center">
-          here you can find the unconfirmed transaction 
+            unconfirmed transaction 
         </div>
         <% if (tx.error) { %>
             <h3 class="text-center"> <%= tx.error %> </h3>
@@ -22,12 +22,14 @@
                 </thead>
                 <tbody>
                     <% tx.forEach(tx => { %>
+                    <% if(tx.addresses.length <= 2) { %>
                     <tr>
                     <th scope="row"> <%= tx.total %>  satoshi</th>
-                    <td><a href="/address/<%= tx.addresses[0]%>"><%=tx.addresses[1].substring(0,5)%>... </a></td>
-                    <td><a href="/address/<%= tx.addresses[0]%>"><%=tx.addresses[1].substring(0,5)%>... </a></td>
+                    <td><a href="/address/<%= tx.addresses[0]%>"><%=tx.addresses[0].substring(0,5)%>... </a></td>
+                    <td><a href="/address/<%= tx.addresses[1]%>"><%=tx.addresses[1].substring(0,5)%>... </a></td>
                   <td> <%= tx.hash %></td>
                   </tr>
+                  <% }%>
                    <% }); %>
                   
                   
