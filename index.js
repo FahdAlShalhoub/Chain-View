@@ -104,6 +104,17 @@ app.post('/tx',async(req,res)=>{
    let resultJson = await result.json();
  return res.render("Txs",{tx:resultJson});
 });
+
+// for getting the mempool.
+app.get('/mempool',async(req,res)=>{
+
+    
+    let Link ="https://api.blockcypher.com/v1/btc/main/txs/";
+    let result = await fetch(Link);
+    let resultJson = await result.json();
+  return res.render("mempool",{tx:resultJson});
+ });
+
 app.post('/address',async(req,res)=>{
 
    
@@ -113,7 +124,16 @@ app.post('/address',async(req,res)=>{
    let resultJson = await result.json();
  return res.render("address",{address:resultJson});
 });
+// app.get for the mempool
+app.get('/address/:address',async(req,res)=>{
 
+   
+    let Link ="https://api.blockcypher.com/v1/btc/main/addrs/";
+    let apiLink = Link + req.params.address;
+    let result = await fetch(apiLink);
+    let resultJson = await result.json();
+  return res.render("address",{address:resultJson});
+ });
 
 
 
