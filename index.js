@@ -90,6 +90,8 @@ app.post('/transactions', async(req,res)=>{
         //   });
         //   let readyData ={method:'POST',body:JSON.stringify(tempTx), headers: { 'Content-Type': 'application/json' }};
         //   let result = await fetch('https://api.blockcypher.com/v1/bcy/test/txs/send', readyData);
+
+        // I love this subject
       res.render('Pendingtx',{tx:tx.tx,tosign:tx.tosign});
 });
 app.get('/tx',(req,res)=>{
