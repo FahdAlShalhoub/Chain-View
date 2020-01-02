@@ -68,28 +68,29 @@ app.get('/transactions',(req,res)=>{
     // this endPoint shows the transaction creation page
     res.render('transactions');
 });
-app.post('/transactions',async(req,res)=>{
+app.post('/transactions', async(req,res)=>{
     //this function takes User's private Key and public key and sends everything to '/txs/new'
-        // let sender = User.publicKey;
-       // let keys    = new bitcoin.ECPair(bigi.fromHex(User.privateKey));
+       // let sender = '039f9582eab8ae6df1063bb2080a0de11d227f133bde7f401cb5014ce9ef6fef1e';
+       // let keys   = new bitcoin.ECPair(bigi.fromHex('26a27d21537ee24fb7f9fbd9e0b9e6afe2a63cbafe6775c34bfd9f5f16620895'));
         let recipient = req.body.address;
         let value = req.body.value;
+        console.log(value);
     var newtx = {
-        inputs: [{addresses: ['mqYjFiGBti4R9zQShqThN9qtNc9rBehZkc']}], // User.publicKey
-        outputs: [{addresses: [recipient], value: value}]
+        inputs: [{addresses: ['CEztKBAYNoUEEaPYbkyFeXC5v8Jz9RoZH9']}], // User.publicKey
+        outputs: [{addresses: ['C1rGdt7QEPGiwPMFhNKNhHmyoWpa5X92pn'], value: 100000}]
       };
 
-      let data ={method:'POST',body:JSON.stringify(newtx), headers: { 'Content-Type': 'application/json' }};
-      let tempTx = await fetch('https://api.blockcypher.com/v1/bcy/test/txs/new', data);
+      let data = { method:'POST', body:JSON.stringify(newtx), headers: { 'Content-Type': 'application/json' }};
+      let result = await fetch('https://api.blockcypher.com/v1/bcy/test/txs/new', data);
+      let tx = await result.json(); console.log(tx);
         // tempTx.pubkeys=[];
-        // tempTx.signatures = tmptx.tosign.map(function(tosign, n) {
-        //     tmptx.pubkeys.push(keys.getPublicKeyBuffer().toString("hex"));
+        // tempTx.signatures = tempTx.tosign.map(function(tosign, n) {
+        //     tempTx.pubkeys.push(keys.getPublicKeyBuffer().toString("hex"));
         //     return keys.sign(new buffer.Buffer(tosign, "hex")).toDER().toString("hex");
         //   });
         //   let readyData ={method:'POST',body:JSON.stringify(tempTx), headers: { 'Content-Type': 'application/json' }};
         //   let result = await fetch('https://api.blockcypher.com/v1/bcy/test/txs/send', readyData);
-      console.log(tempTx);
-      res.send(tempTx);
+      res.render('Pendingtx',{tx:tx.tx,tosign:tx.tosign});
 });
 app.get('/tx',(req,res)=>{
 
