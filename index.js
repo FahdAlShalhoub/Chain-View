@@ -121,7 +121,7 @@ app.get('/mempool',async(req,res)=>{
   return res.render("mempool",{tx:resultJson});
  });
 
-aapp.post('/address',async(req,res)=>{
+app.post('/address',async(req,res)=>{
 
    
     let Link ="https://api.blockcypher.com/v1/btc/main/addrs/";
